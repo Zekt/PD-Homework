@@ -10,7 +10,7 @@ int main()
 	while(cin >> input && input){
 		if(input > 0){
 			limit = sqrt(input)+3;
-			for(m = 2,found = 0;m < limit && !found;++m){
+			for(m = 2,found = 0;m < limit && !found;++m)
 				for(n = 2,num = m*m;num < limit;++n){
 					num *= m;
 					if(num == input){
@@ -18,7 +18,6 @@ int main()
 						break;
 					}
 				}
-			}
 			if(found)
 				cout << num << " " << m << " " << n << endl;
 			else
