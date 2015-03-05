@@ -7,20 +7,24 @@ int main()
 {
 	int input,limit,m,n,num;
 	bool found;
-	while(cin >> input && input){
-		if(input > 0){
-			limit = sqrt(input)+3;
-			for(m = 2,found = 0;m < limit && !found;++m)
-				for(n = 2,num = m*m;num < limit;++n){
+	while(cin >> input && input)
+	{
+		if(input > 0)
+		{
+			limit = sqrt(input)+1;
+			found = 0;
+			for(m = 2;m < limit && !found;++m)
+				for(n = 2,num = m;num < input;++n)
+				{
 					num *= m;
-					if(num == input){
+					if(num == input)
+					{
 						found = 1;
+						cout << m << " " << n << endl;
 						break;
 					}
 				}
-			if(found)
-				cout << num << " " << m << " " << n << endl;
-			else
+			if(!found)
 				cout << "-1\n";
 		}
 		else
