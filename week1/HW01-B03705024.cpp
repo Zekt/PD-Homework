@@ -1,3 +1,4 @@
+//我真的把這份交出去了，看不懂這個版本請按History，請不要衝動的把這份交出跟我同歸於盡...
 #include<iostream>
 #include<cmath>
 
