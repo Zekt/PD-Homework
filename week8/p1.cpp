@@ -2,15 +2,26 @@
 #include<cstdlib>
 using namespace std;
 
-struct LotteryMachine {
+class LotteryMachine {
+	private:
 	int tokenCount;
 	int* tokens;
-	int outcomeCount;
-	int* outcomes;
 	void initialize();
 	void initialize(int n, int t[]);
-	bool draw(int m);
 	void release();
+	public:
+	int outcomeCount;
+	int* outcomes;
+	bool draw(int m);
+	LotteryMachine() {
+		initialize();
+	}
+	LotteryMachine(int n, int t[]) {
+		initialize(n, t);
+	}
+	~LotteryMachine() {
+		release();
+	}
 };
 
 void LotteryMachine::initialize() {
@@ -56,8 +67,7 @@ bool LotteryMachine::draw(int m) {
 
 int main() {
 	int n[10] = {1,2,3,4,5,6,7,8,9,0};
-	LotteryMachine l;
-	l.initialize(10,n);
+	LotteryMachine l(10,n);
 	l.draw(5);
 	for(int i = 0; i < 5; ++i)
 		cout << l.outcomes[i] << " ";
