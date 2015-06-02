@@ -20,8 +20,10 @@ int main(){
 		}
 	}
 	while(cin >> n && n){
-		if(n == 1)
+		if(n == 1) {
+			cout << endl;
 			continue;
+		}
 		first = 1;
 		for(int i = 0;i < primes.size() && primes[i] < n;++i)
 			if(n%primes[i] == 0){
