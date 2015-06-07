@@ -2,37 +2,65 @@
 #include<fstream>
 using namespace std;
 
+const int MAX_ITEM_COUNT = 10;
+
+class AbstractTSN
+{
+	protected:
+		string memberID;
+		char gender;
+		int age;
+		int itemCount;
+	public:
+		void setID(char* id);
+		void setGender(bool g);
+		void setAge(int age);
+};
+
+
+class FirstTSN : public AbstractTSN
+{
+	private:
+		bool items[MAX_ITEM_COUNT];
+	public:
+		FirstTSN(char* id);
+};
+
+void AbstractTSN::setID(char* id) {
+	memberID = id;
+}
+
+class SecondTSN : public AbstractTSN
+{
+	private:
+		int* items;
+	public:
+};
+
 int main() {
-	int times;
+	int times, mode, sizeF = 0, sizeS = 0;
 	char tmp[10];
-	//tmp is used to record the stripped strings.
-	string path;
 	char c;
+	string path;
 	ifstream f;
 	int count[5][10] = {};
-	/* 
-	 * In count, the first index represents the type of customer,
-	 * from 0 to 4 they are male, female, member, non-member,
-	 * each item they bought.
-	 */
 	bool r[5];
-	/* 
-	 * r is used to record if a transaction record
-	 * belongs to that type of customer.
-	 */
+	FirstTSN* first[24000];
+	SecondTSN* second[24000];
 	cin >> times;
 	while(times--) {
+		cin >> mode;
 		cin >> path;
 		f.open(path.c_str());
+		if(mode == 1)
+			first[sizeF] = new FirstTSN;
+		else
+			second[sizeS] = new SecondTSN;
 		while(true) {
-			for(int i = 0; i < 4; ++i)
-				r[i] = 0;
-			r[4] = 1;
-			//Initialize r.
 			f.getline(tmp, 10, ',');
 			if(f.eof())
 				break;
-			//break if EOF is encountered.
+			first[size].
 			f.getline(tmp, 10, ',');
 			if(tmp[0] != '\0')
 				r[2] = 1;
@@ -44,16 +72,17 @@ int main() {
 			else if(tmp[0] == 'F')
 				r[1] = 1;
 			f.getline(tmp, 10, ',');
+			for(int i = 0; i < 4; ++i)
+				r[i] = 0;
+			r[4] = 1;
 			for(int i = 0; i < 10; ++i) {
 				do {
 					f >> c;
 				} while(c == ',');
-				//Read char by char to make sure the right one is read.
 				if(c == '1')
 					for(int j = 0; j < 5; ++j)
 						if(r[j])
 							++count[j][i];
-				//Only count the types of customers this record belongs to.
 			}
 		}
 		f.clear();
